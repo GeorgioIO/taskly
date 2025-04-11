@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style-type: none;
+}
+
+
+:root{
+    /* COLORS */
+    --white-color : #EEEEEE;
+    --black-color : #231B1B;
+
+    --body-bg-color : var(--white-color);
+    --header-bg-color : #231B1B;
+    --footer-bg-color : #231B1B;
+    --sidebar-bg-color : #B4B4B4;
+    
+    --todo-selections-bg-color-hover : #CCCCCC;
+    --todo-selections-bg-color-active : #CCCCCC;
+    --todo-selections-counter-bg-color : #696969;
+
+    --header-text-color : var(--white-color);
+    --footer-font-color : var(--white-color);
+
+    /* FONTS */
+    --logo-font : "Jockey One", sans-serif;
+    --footer-font : "Special Gothic Condensed One", sans-serif;
+    --general-font : "Roboto", sans-serif;
+}
+
+/* animations */
+@keyframes showDeleteBtn {
+    0%{ opacity: 0;}
+    100%{ opacity: 1;}
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--body-bg-color);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+/* STYLES */
+header{
+    background-color: var(--header-bg-color);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+header > .header-logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo > h1
+{
+    text-transform: uppercase;
+    font-family: var(--logo-font);
+    color: var(--header-text-color);
+}
+
+
+main{
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+
+#sidebar{
+    padding: 35px 25px 75px 25px;
+    background-color: var(--sidebar-bg-color);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.todos-selections,
+.projects-selections
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todos-selections > li,
+.projects-selection-container> .projects-selections > li{
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    cursor: pointer;
+    padding: 10px 5px; 
+    border-radius: 5px;
+    align-items: center;
+}
+
+.todos-selections > li > p{
+    font-family: var(--general-font);
+    font-weight: 500;
+    margin-right: auto;
+}
+
+.todos-selections > li:hover{
+    background-color: var(--todo-selections-bg-color-hover);
+}
+
+.todos-counter{
+    width: 20px;
+    height: 20px;
+    background-color: var(--todo-selections-counter-bg-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    font-family: var(--general-font);
+    color: var(--white-color);
+    font-size: .8rem;
+}
+
+.projects{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.projects-selection-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.projects-selections > li > p{
+    font-family: var(--general-font);
+    font-weight: 400;
+    margin-right: auto;
+}
+
+#addProjectBtn{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--general-font);
+    background-color: var(--black-color);
+    border-radius: 10px;
+    border: none;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.sidebar-title{
+    font-family: var(--general-font);
+}
+
+
+.deleteProjectBtn{
+    opacity: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.projects-selections > li:hover > .deleteProjectBtn{
+    animation: showDeleteBtn ease-in-out 500ms forwards;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    gap: 10px;
+    font-family: var(--footer-font);
+    color: var(--footer-font-color);
+    background-color: var(--footer-bg-color);
+}

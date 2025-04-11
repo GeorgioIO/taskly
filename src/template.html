@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskly By Georgio Jabbour</title>
+    <link rel="icon" href="../src/assets/images/taskly-logo.svg" type="image/svg+xml">
+    <script type="module" src="../src/index.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="../src/assets/images/taskly-logo.svg" alt="taskly logo">
+            <h1>taskly</h1>
+        </div>
+    </header>
+    <main>
+        <nav id="sidebar">
+            <ul class="todos-selections">
+                <li id="inbox">
+                    <img src="../src/assets/images/inbox-icon.svg" alt="inbox icon">
+                    <p>Inbox</p>
+                    <div class="todos-counter">5</div>
+                </li>
+                <li id="today">
+                    <img src="../src/assets/images/todaycalendar-icon.svg" alt="today calendar icon">
+                    <p>Today</p>
+                </li>
+                <li id="weekly">
+                    <img src="../src/assets/images/weeklycalendar-icon.svg" alt="weekly calendar icon">
+                    <p>Weekly</p>
+                </li>
+            </ul>
+            <div class="projects">
+                <h2 class="sidebar-title">Projects</h2>
+                <div class="projects-selection-container">
+                    <ul class="projects-selections">
+                        <li>
+                            <img src="../src/assets/images/project-test-icon.svg" alt="Project test">
+                            <p>Project name</p>
+                            <button class="deleteProjectBtn">
+                                <img src="../src/assets/images/delete-icon.svg" alt="delete icon">
+                            </button>
+                        </li>
+                    </ul>
+                    <button id="addProjectBtn">
+                        <img src="../src/assets/images/addfolder-icon.svg" alt="add project">
+                        Add Project
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="content">
+
+        </div>
+    </main>
+    <footer>
+        Copyright &copy; georgio jabbour
+        <a href="https://github.com/GeorgioIO" target="_blank">
+            <img src="../src/assets/images/github-icon.svg" alt="github logo">
+        </a>
+    </footer>
+</body>
+</html>
