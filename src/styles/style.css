@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* resets and default styles */
 *{
     margin: 0;
     padding: 0;
@@ -10,6 +11,11 @@
 
 ul{
     list-style-type: none;
+}
+
+button{
+    border: none;
+    cursor: pointer;
 }
 
 
@@ -41,6 +47,27 @@ ul{
     0%{ opacity: 0;}
     100%{ opacity: 1;}
 }
+
+
+@keyframes showForm {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes hideForm {
+    0%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+.showForm{
+    animation: showForm ease-in-out 500ms forwards;
+}
+
+.hideForm{
+    animation: hideForm ease-in-out 500ms forwards;
+}
+
+/* ------------- */
 
 html{
     height: 100%;
@@ -87,7 +114,7 @@ main{
 #sidebar{
     padding: 35px 25px 75px 25px;
     background-color: var(--sidebar-bg-color);
-    width: 250px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -99,6 +126,10 @@ main{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.todos-selections > li.active{
+    background-color: var(--todo-selections-bg-color-active);
 }
 
 .todos-selections > li,
@@ -186,9 +217,213 @@ main{
     animation: showDeleteBtn ease-in-out 500ms forwards;
 }
 
-footer{
+
+#content{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.content-title{
+    font-family: var(--general-font);
+}
+
+.todos-content-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todos-content-container > li{
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 165px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 10px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 0px 20px  0px rgba(0, 0, 0, 0.222);
+    padding: 10px;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: center;
+}
+
+.todos-content-container > li > input{
+    width: 30px;
+    height: 30px;
+    accent-color: var(--black-color);
+}
+
+.todos-content-container > li > .todo-information{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+    width: 100%;
+}
+
+.todo-information > *{
+    font-family: var(--general-font);
+
+}
+
+.todo-information > .todo-title{
+    font-size: 1.5rem;
+}
+
+.todo-information > .todo-description{
+    margin-bottom: auto;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Show only 3 lines */
+    line-height: 1.5em;
+    max-height: calc(1.5em * 3); /* line-height * number of lines */
+}
+
+
+.todo-control{
+    display: flex;
+    gap: 20px;
+}
+
+
+.todo-control > button{
+    background-color: transparent;
+    border: none;
+}
+
+.add-task-button
+{
+    background-color: white;
+    height: 40px;
+    width: 50%;
+    box-shadow: 5px 5px 0px 0px black;
+    border-radius: 10px;
+    align-self: center;
+
+}
+
+
+/* form */
+.add-form{
     position: fixed;
-    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    height: auto;
+    border: 5px solid black;
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+.form-title
+{
+    padding: 10px;
+    font-family: var(--general-font);
+}
+
+.add-form > .input-container,
+.add-form > .form-buttons{
+    width: 220px;
+    height: 30px;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+.input-container > input{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.input-container > label{
+    font-weight: bold;
+    font-family: var(--general-font);
+}
+
+.add-form > #priority{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#priority > button{
+    width: 60px;
+    height: 100%;
+    font-family: var(--general-font);
+    font-weight: 800;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.499);
+    border-radius: 10px;
+    color: black;
+}
+
+#highPriority
+{
+    background-color: red;
+    color: white;
+}
+
+#mediumPriority
+{
+    background-color: yellow;
+    color: white;
+}
+
+#lowPriority
+{
+    background-color: green;
+    color: white;
+}
+
+.form-buttons
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form-buttons > button{
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 100px;
+    height: 100%;
+    font-family: var(--general-font);
+    font-weight: bold;
+    transition: ease-in-out 500ms;
+}
+
+.form-buttons > button:hover{
+    background-color: rgb(76, 76, 76);
+    color: white;
+}
+
+footer{
     width: 100%;
     display: flex;
     align-items: center;
