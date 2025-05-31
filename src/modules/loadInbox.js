@@ -1,38 +1,43 @@
 import { createReadyElement } from "./utilityFunction";
 import editIcon from "../assets/images/edittodo-icon.svg";
 import deleteIcon from "../assets/images/deletetodo-icon.svg";
-
+import { loadAddTaskButton } from "./loadAddTaskButton";
+import { deleteTodo  , rehydrateTodo} from "../classes/TodoItem";
+import { setTodoCounter } from "./setTodoCounter";
+import { loadEditTodoForm  , setCloseButton , setPriorityButtons} from "./loadEditTodoForm";
 
 export function loadInbox(){
     const content = document.getElementById("content");
     content.innerHTML = "";
     const parsedInboxTodos = JSON.parse(localStorage.getItem("inboxTodos"))
-    console.log(parsedInboxTodos)
-
+    const todoArray = rehydrateTodo(parsedInboxTodos);
     // Create Section Title
     let sectionTitle = createReadyElement("h2" , "content-title" , "Inbox");
     content.appendChild(sectionTitle);
     
     // Create and populate All todos
-
     let todosContentContainer = createReadyElement("ul" , "todos-content-container");
 
-    for(let i = 0 ; i < parsedInboxTodos.length ; i++)
+    for(let i = 0 ; i < todoArray.length ; i++)
     {
         let todoListItem = createReadyElement("li" , "todo-item");
-        todoListItem.dataset.id = parsedInboxTodos[i].id;
+        todoListItem.dataset.id = todoArray[i].id;
 
-        if(parsedInboxTodos[i].priority === "High")
+        if(todoArray[i].priority === "High")
         {
             todoListItem.style.borderLeft = "10px solid red";
         }
-        else if(parsedInboxTodos[i].priority === "Medium")
+        else if(todoArray[i].priority === "Medium")
         {
             todoListItem.style.borderLeft = "10px solid yellow";
         }
-        else
+        else if(todoArray[i].priority === "Low")
         {
             todoListItem.style.borderLeft = "10px solid green";
+        }
+        else
+        {
+            todoListItem.style.borderLeft = "10px solid lightblue";
         }
 
         let checkBox = createReadyElement("input");
@@ -44,9 +49,9 @@ export function loadInbox(){
 
         let todoInformationContainer = createReadyElement("div" , "todo-information");
 
-        let todoTitle = createReadyElement("h2" , "todo-title" , parsedInboxTodos[i].title);
-        let todoDescription = createReadyElement("p" , "todo-description" , parsedInboxTodos[i].description);
-        let todoCreationDate = createReadyElement("p" , "todo-creationdate" , parsedInboxTodos[i].creationDate);
+        let todoTitle = createReadyElement("h2" , "todo-title" , todoArray[i].title);
+        let todoDescription = createReadyElement("p" , "todo-description" , todoArray[i].description);
+        let todoCreationDate = createReadyElement("p" , "todo-creationdate" , todoArray[i].creationDate);
         
         todoInformationContainer.append(todoTitle , todoDescription , todoCreationDate);
         todoListItem.appendChild(todoInformationContainer);
@@ -67,6 +72,25 @@ export function loadInbox(){
         deleteImage.alt = "Delete Todo Icon";
         deleteButton.appendChild(deleteImage);
 
+        deleteButton.addEventListener("click" , () => {
+            deleteTodo(todoArray[i].id);
+            loadInbox();
+            setTodoCounter("inbox");
+        })
+
+        editButton.addEventListener("click" , () => {
+            loadEditTodoForm(todoArray[i]);
+
+            const addForm = document.querySelector(".add-form");
+
+            setCloseButton(addForm);
+            setPriorityButtons(addForm);
+
+            addForm.style.display = "flex";
+            addForm.classList.remove("hideForm")
+            addForm.classList.add("showForm");
+        })
+
         buttonContainer.append(editButton , deleteButton);
         todoListItem.appendChild(buttonContainer);
 
@@ -74,6 +98,6 @@ export function loadInbox(){
     }
 
     content.appendChild(todosContentContainer);
-
+    loadAddTaskButton();
     
 }

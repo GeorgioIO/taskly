@@ -227,7 +227,21 @@ main{
 }
 
 .content-title{
+    font-size: 2rem;
     font-family: var(--general-font);
+    position: relative;
+    width: max-content;
+}
+
+.content-title::before
+{
+    content: "";
+    position: absolute;
+    height: 4px;
+    background-color: black;
+    bottom: -5px;
+    border-radius: 10px;
+    animation: barSlideIN 750ms ease-in-out forwards;
 }
 
 .todos-content-container{
@@ -353,7 +367,8 @@ main{
 
 
 
-.input-container > input{
+.input-container > input,
+.input-container > select{
     width: 100%;
     height: 100%;
     padding: 5px;
@@ -421,6 +436,13 @@ main{
 .form-buttons > button:hover{
     background-color: rgb(76, 76, 76);
     color: white;
+}
+
+
+.project-description
+{
+    font-style: italic;
+    font-size: 1.2rem;
 }
 
 footer{

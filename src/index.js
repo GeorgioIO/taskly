@@ -1,72 +1,73 @@
+import "../src/styles/animations.css";
 import "../src/styles/style.css";
 import { TodoItem } from "./classes/TodoItem";
+import { Project } from "./classes/Project";
 import { loadInbox } from "./modules/loadInbox";
+import { loadProjects } from "./modules/loadProjects";
 import { loadAddTaskButton } from "./modules/loadAddTaskButton";
-import { loadAddForm } from "./modules/loadAddForm";
-
-let todo1 = new TodoItem("Testing 1" , "todo item 1" , "High" , "4/18/2025");
-let todo2 = new TodoItem("Testing 2" , "todo item 2" , "High" , "4/18/2025");
-let todo3 = new TodoItem("Testing 3" , "todo item 3" , "Medium" , "4/18/2025");
-let todo4 = new TodoItem("Testing 3" , "todo item 3" , "Low" , "4/18/2025");
-let todo5 = new TodoItem("Testing to try date" , "todo item 4" , "Low" , "4/18/2025");
-
-let todoArray = [todo1 , todo2 , todo3 , todo4 , todo5];
-const todoJSON = JSON.stringify(todoArray);
-localStorage.setItem("inboxTodos" , todoJSON);
-
-
-
+import { loadAddTodoForm , setCloseButton , setPriorityButtons , setUpAddTodoBtn} from "./modules/loadAddTodoForm";
+import { loadAddProjectForm , setUpAddProjectBtn } from "./modules/loadAddProjectForm";
+import { add } from "date-fns/fp";
+import { loadTodayTodos } from "./modules/loadTodayTodos";
+import { loadWeekTodos } from "./modules/loadWeekTodos";
+import { setTodoCounter } from "./modules/setTodoCounter";
+import  "../src/scripts/script.js" ;
+import { loadTodo } from "./modules/loadTodo.js";
 
 
 document.addEventListener("DOMContentLoaded" , () => {
-    loadInbox();
-    loadAddTaskButton();
-    loadAddForm();
+    loadTodo("inbox");
+    setTodoCounter("inbox");
+    loadProjects();
 
-    const addTaskButton = document.querySelector(".add-task-button");
-    const addForm = document.querySelector(".add-form");
-    const closeFormButton = addForm.querySelector(".close-button")
-    const priorityButtons = addForm.querySelectorAll("#priority button");
+    // const addTaskButton = document.querySelector(".add-task-button");
 
-    addTaskButton.addEventListener("click" , () => {
-        addForm.style.display = "flex";
-        addForm.classList.remove("hideForm")
-        addForm.classList.add("showForm");
-    })
+    // addTaskButton.addEventListener("click" , () => {
+    //     loadAddTodoForm();
 
-    closeFormButton.addEventListener("click" , (event) => {
-        event.preventDefault()
-        addForm.classList.remove("showForm")
-        addForm.classList.add("hideForm");
+    //     const addForm = document.querySelector(".add-form");
 
-        setTimeout(() => {
-            addForm.reset();
-            addForm.style.display = "none";
-        } , 600)
-    })
+    //     setCloseButton(addForm);
+    //     setPriorityButtons(addForm);
+    //     setUpAddTodoBtn();
 
-    priorityButtons.forEach(button => {
-        button.addEventListener("click" , (event) => {
-            priorityButtons.forEach(button => {
-                button.style.backgroundColor = "white";
-                button.dataset.active = "false";
-            });
+    //     addForm.style.display = "flex";
+    //     addForm.classList.remove("hideForm")
+    //     addForm.classList.add("showForm");
 
-            let clickedButton = event.currentTarget;
-            clickedButton.dataset.active = "true";
-            let priority = clickedButton.textContent;
-            if(priority === "High")
-            {
-                clickedButton.style.backgroundColor = "red";
-            }
-            else if(priority === "Medium")
-            {
-                clickedButton.style.backgroundColor = "yellow";
-            }
-            else if(priority === "Low")
-            {
-                clickedButton.style.backgroundColor = "green";
-            }
-        })
-    })
+    // })
 })
+
+const showAddProjectFormBtn = document.querySelector("#addProjectBtn");
+showAddProjectFormBtn.addEventListener("click" , () => {
+    loadAddProjectForm();
+
+    const addForm = document.querySelector(".add-form");
+
+    setCloseButton(addForm);
+    setPriorityButtons(addForm);
+    setUpAddProjectBtn();
+
+    addForm.style.display = "flex";
+    addForm.classList.remove("hideForm")
+    addForm.classList.add("showForm");
+})
+
+const todayTodosBtn = document.querySelector("li#today");
+todayTodosBtn.addEventListener("click" , () => {
+    loadTodayTodos();
+    setTodoCounter("today");
+})
+
+const inboxTodosBtn = document.querySelector("li#inbox");
+inboxTodosBtn.addEventListener("click" , () => {
+    loadInbox();
+    setTodoCounter("inbox");
+})
+
+const weekTodosBtn = document.querySelector("li#weekly");
+weekTodosBtn.addEventListener("click" , () => {
+    loadWeekTodos();
+    setTodoCounter("week");
+})
+

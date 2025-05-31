@@ -1,0 +1,23 @@
+@keyframes barSlideIN
+{
+    0%{
+        width: 10%;
+        transform: translateX(0px);
+        background-color: antiquewhite;
+    }
+
+    
+    50%{
+        width: 50%;
+        transform: translateX(50px);
+        background-color: rgb(160, 150, 137);
+    }
+    
+    100%
+    {
+        width: 100%;
+        transform: translateX(0px);
+        background-color: black;
+
+    }
+}

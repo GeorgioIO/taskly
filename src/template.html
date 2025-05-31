@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskly By Georgio Jabbour</title>
     <link rel="icon" href="../src/assets/images/taskly-logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../src/styles/style.css">
-
 </head>
 <body>
     <header>
@@ -36,13 +34,7 @@
                 <h2 class="sidebar-title">Projects</h2>
                 <div class="projects-selection-container">
                     <ul class="projects-selections">
-                        <li>
-                            <img src="../src/assets/images/project-test-icon.svg" alt="Project test">
-                            <p>Project name</p>
-                            <button class="deleteProjectBtn">
-                                <img src="../src/assets/images/delete-icon.svg" alt="delete icon">
-                            </button>
-                        </li>
+                        <!-- Populated by js -->
                     </ul>
                     <button id="addProjectBtn">
                         <img src="../src/assets/images/addfolder-icon.svg" alt="add project">
@@ -51,55 +43,14 @@
                 </div>
             </div>
         </nav>
+
         <div id="content">
-            <form class="add-form">
-                <h2 class="form-title">Add Todo</h2>
 
-                <div class="input-container" id="title">
-                    <label for="">test</label>
-                    <input type="text" id="todoTitle" name="todo-title" required>
-                </div>
-                <div class="input-container" id="description">
-                    <input type="text" id="todoDescription" name="todo-description">
-                </div>
-                <div class="input-container" id="dueDate">
-                    <input  type="date" id="todoDueDate" name="todo-due-date" required>
-                </div>
-                <div class="input-container" id="priority">
-                    <button id="highPriority">High</button>
-                    <button id="mediumPriority">Medium</button>
-                    <button id="lowPriority">Low</button>
-                </div>
-
-                <div class="form-buttons">
-                    <button type="submit">Submit</button>
-                    <button type="button" class="close-button">Close</button>
-                </div>
-            </form>
-            <h2 class="content-title">Inbox</h2>
-            <ul class="todos-content-container">
-                <li class="todo-item">
-                    <input type="checkbox" name="state" id="todoState">
-                    <div class="todo-information">
-                        <h2 class="todo-title">Todo Title</h2>
-                        <p class="todo-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta autem aliquid reiciendis. Aspernatur quos nisi laboriosam excepturi accusantium quod magnam repellat a exercitationem! Fugit nobis facilis sit dolores deserunt iste Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque, at sapiente fugiat esse necessitatibus, nihil quod praesentium quam accusantium eaque illum? Eveniet perferendis temporibus esse beatae assumenda dolores repellendus at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, assumenda quae rem alias asperiores iure obcaecati illo culpa autem ut eius, nesciunt perspiciatis quasi voluptate ducimus ipsum suscipit! Nihil, voluptas.</p>
-                        <p class="todo-creationdate">10 days ago</p>
-                    </div>
-                    <div class="todo-control">
-                        <button>
-                            <img src="../src/assets/images/edittodo-icon.svg" alt="edit todo">
-                        </button>
-                        <button>
-                            <img src="../src/assets/images/deletetodo-icon.svg" alt="delet todo">
-                        </button>
-                    </div>
-                </li>               
-            </ul>
-            <button class="add-task-button">
-                <img src="./assets/images/add-task-icon.svg" alt="add task icon">
-            </button>
         </div>
     </main>
+    <form class="form">
+
+    </form>
     <footer>
         Copyright &copy; georgio jabbour
         <a href="https://github.com/GeorgioIO" target="_blank">
