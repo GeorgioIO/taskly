@@ -25,14 +25,21 @@ const todosSelection = document.querySelectorAll(".todos-selections li");
 
 todosSelection.forEach(selection => {
     selection.addEventListener("click" , () => {
-        console.log(1)
-        todosSelection.forEach(selection => selection.classList.remove("active"));
-        document.querySelector(".todos-counter").remove();
+        const allProjects = document.querySelectorAll(".projects-selections li");   
+        allProjects.forEach(project => project.classList.remove("active-project"));
 
-        selection.classList.add("active");
+        todosSelection.forEach(selection => selection.classList.remove("active"));
+
+        const currentTodoCounter = document.querySelector(".todos-counter")
+        currentTodoCounter.remove();
+        
 
         const todoCounter = createReadyElement("div" , "todos-counter" , "");
         selection.appendChild(todoCounter);
+    
+
+        selection.classList.add("active");
+
 
     })
 })

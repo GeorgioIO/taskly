@@ -1,9 +1,5 @@
 import { updateTodo} from "../classes/TodoItem";
 import { createReadyElement } from "./utilityFunction";
-import { setTodoCounter } from "./setTodoCounter";
-// import { ProjectTodoBuilder } from "../classes/DOMTodoBuilder";
-
-// let projectTodoBuilder = new ProjectTodoBuilder();
 
 function loadEditTodoForm(todo){
     const mainTag = document.querySelector("main");

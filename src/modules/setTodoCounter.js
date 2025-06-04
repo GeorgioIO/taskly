@@ -3,11 +3,14 @@ import { format , isThisWeek} from "date-fns";
 
 export function setTodoCounter(type)
 {
+    
     const parsedInboxTodos = JSON.parse(localStorage.getItem("inboxTodos"))
     var counter = 0;
     if(type === "inbox")
     {
-        counter = parsedInboxTodos.length;
+        // const todoCounter = createReadyElement("div" , "todos-counter" , "");
+        // document.getElementById("inbox").appendChild(todoCounter);
+        document.querySelector(".todos-counter").innerHTML = parsedInboxTodos.length;
     }
     else if(type === "today")
     {
@@ -18,6 +21,7 @@ export function setTodoCounter(type)
                 counter++;
             }
         }
+        document.querySelector(".todos-counter").innerHTML = counter;
     }
     else if(type === "week")
     {
@@ -28,7 +32,6 @@ export function setTodoCounter(type)
                 counter++;
             }
         }
+        document.querySelector(".todos-counter").innerHTML = counter;
     }
-
-    document.querySelector(".todos-counter").innerHTML = counter;
 }

@@ -1,11 +1,9 @@
-import { Project , deleteProject } from "./Project";
+import { deleteProject } from "./Project";
 import { createReadyElement } from "../modules/utilityFunction";
 import projectIcon from "../assets/images/project-test-icon.svg";
 import deleteProjectIcon from "../assets/images/delete-icon.svg";
-import editIcon from "../assets/images/edittodo-icon.svg";
-import deleteIcon from "../assets/images/deletetodo-icon.svg";
-import { deleteTodo , rehydrateTodo} from "../classes/TodoItem";
-import { setTodoCounter } from "../modules/setTodoCounter";
+import {rehydrateTodo} from "../classes/TodoItem";
+
 import { ProjectTodoBuilder } from "./DOMTodoBuilder";
 
 let projectTodobuilder = new ProjectTodoBuilder();
@@ -52,11 +50,26 @@ class ProjectBuilder extends DOMProjectInventory
             for(let i = 0 ; i < projects.length ; i++)
             {
                 const liProject = createReadyElement("li");
-                liProject.classList.add("sidebar-selection");
+                
                 liProject.dataset.projectid = projects[i].id;
                 liProject.dataset.name = projects[i].name;
                 liProject.dataset.description = projects[i].description;
 
+                liProject.addEventListener("click" , () => {
+                    const allProjects = document.querySelectorAll(".projects-selections li");
+
+                    const todoSelections = document.querySelectorAll(".todos-selections li");
+                    todoSelections.forEach(todoselection => todoselection.classList.remove("active"));
+
+                    const todoCounter = document.querySelector(".todos-counter")
+                    if (todoCounter)
+                    {
+                        todoCounter.remove();
+                    }
+
+                    allProjects.forEach(project => project.classList.remove("active-project"));
+                    liProject.classList.add("active-project");
+                })
                 const projectImage = new Image();
                 projectImage.src = projectIcon;
                 projectImage.alt = projects[i].name;

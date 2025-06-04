@@ -1,19 +1,19 @@
 import "../src/styles/animations.css";
 import "../src/styles/style.css";
-import { TodoItem } from "./classes/TodoItem";
-import { Project } from "./classes/Project";
 import { loadProjects } from "./modules/loadProjects";
-import { loadAddTaskButton } from "./modules/loadAddTaskButton";
 import { loadAddTodoForm , setCloseButton , setPriorityButtons , setUpAddTodoBtn} from "./modules/loadAddTodoForm";
 import { loadAddProjectForm , setUpAddProjectBtn } from "./modules/loadAddProjectForm";
-import { add } from "date-fns/fp";
 import { setTodoCounter } from "./modules/setTodoCounter";
 import  "../src/scripts/script.js" ;
 import { loadTodo } from "./modules/loadTodo.js";
+import { createReadyElement } from "./modules/utilityFunction.js";
 
 
 document.addEventListener("DOMContentLoaded" , () => {
     loadTodo("inbox");
+
+    const todoCounter = createReadyElement("div" , "todos-counter" , "");
+    document.getElementById("inbox").appendChild(todoCounter);
     setTodoCounter("inbox");
     loadProjects();
 
