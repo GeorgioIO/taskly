@@ -1,4 +1,3 @@
-import { loadInbox } from "../modules/loadInbox.js";
 import {generateID} from "../modules/utilityFunction.js";
 import { format } from "date-fns";
 
@@ -109,6 +108,7 @@ function deleteTodo(givenID)
 
 function rehydrateTodo(rawTodos)
 {
+    console.log(rawTodos)
     return rawTodos.map(todo => {
         const newTodo = new TodoItem(
             todo._title,

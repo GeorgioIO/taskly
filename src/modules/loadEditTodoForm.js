@@ -1,8 +1,9 @@
 import { updateTodo} from "../classes/TodoItem";
-import { loadInbox } from "./loadInbox";
 import { createReadyElement } from "./utilityFunction";
 import { setTodoCounter } from "./setTodoCounter";
+// import { ProjectTodoBuilder } from "../classes/DOMTodoBuilder";
 
+// let projectTodoBuilder = new ProjectTodoBuilder();
 
 function loadEditTodoForm(todo){
     const mainTag = document.querySelector("main");
@@ -128,8 +129,11 @@ function loadEditTodoForm(todo){
 
     const submitButton = createReadyElement("button" , "update-project" , "Update");
     submitButton.type = "button";
-    submitButton.addEventListener("click" , () => {
+    submitButton.addEventListener("click" , async () => {
+        let option = document.getElementById("content").dataset.currentContent;
         updateTodo(todo);
+        const { loadTodo } = await import("../modules/loadTodo.js");
+        loadTodo(option);
     })
 
     const closeButton = createReadyElement("button" , "close-button" , "Close");

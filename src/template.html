@@ -12,20 +12,25 @@
             <img src="../src/assets/images/taskly-logo.svg" alt="taskly logo">
             <h1>taskly</h1>
         </div>
+        <div class="burger-menu" data-state="inactive">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
     </header>
     <main>
         <nav id="sidebar">
             <ul class="todos-selections">
-                <li id="inbox" class="active">
+                <li id="inbox" class="active sidebar-selection">
                     <img src="../src/assets/images/inbox-icon.svg" alt="inbox icon">
                     <p>Inbox</p>
                     <div class="todos-counter">5</div>
                 </li>
-                <li id="today">
+                <li id="today" class="sidebar-selection">
                     <img src="../src/assets/images/todaycalendar-icon.svg" alt="today calendar icon">
                     <p>Today</p>
                 </li>
-                <li id="weekly">
+                <li id="weekly" class="sidebar-selection">
                     <img src="../src/assets/images/weeklycalendar-icon.svg" alt="weekly calendar icon">
                     <p>Weekly</p>
                 </li>
@@ -43,7 +48,6 @@
                 </div>
             </div>
         </nav>
-
         <div id="content">
 
         </div>

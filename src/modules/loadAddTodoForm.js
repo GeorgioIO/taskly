@@ -1,8 +1,7 @@
 import { TodoItem } from "../classes/TodoItem";
-import { loadInbox } from "./loadInbox";
 import { createReadyElement } from "./utilityFunction";
 import { setTodoCounter } from "./setTodoCounter";
-
+import { loadTodo } from "./loadTodo";
 
 function loadAddTodoForm(){
     const mainTag = document.querySelector("main");
@@ -156,7 +155,7 @@ function setUpAddTodoBtn()
             localStorage.setItem("inboxTodos" , JSON.stringify(parsedInboxTodos));
         }
 
-        loadInbox();
+        loadTodo("inbox");
         setTodoCounter("inbox");
     })  
 }
