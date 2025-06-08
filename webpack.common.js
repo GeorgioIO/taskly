@@ -8,6 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     assetModuleFilename: "assets/images/[name][hash][ext][query]",
+    publicPath : "./",
   },
   plugins: [
     new HtmlWebpackPlugin({
