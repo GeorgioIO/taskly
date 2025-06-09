@@ -1,5 +1,14 @@
+// IMPORTING CSS
 import "../src/styles/animations.css";
 import "../src/styles/style.css";
+
+// IMPORTING CLASSES
+import "./classes/DOMProjectBuilder.js";
+import "./classes/DOMTodoBuilder.js";
+import "./classes/Project.js";
+import "./classes/TodoItem.js";
+
+
 import { loadProjects } from "./modules/loadProjects";
 import { loadAddTodoForm , setCloseButton , setPriorityButtons , setUpAddTodoBtn} from "./modules/loadAddTodoForm";
 import { loadAddProjectForm , setUpAddProjectBtn } from "./modules/loadAddProjectForm";
