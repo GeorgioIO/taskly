@@ -2,11 +2,20 @@
 import "../src/styles/animations.css";
 import "../src/styles/style.css";
 
-// IMPORTING CLASSES
-import "./classes/DOMProjectBuilder.js";
-import "./classes/DOMTodoBuilder.js";
+// // IMPORTING CLASSES
 import "./classes/Project.js";
 import "./classes/TodoItem.js";
+import "./classes/DOMProjectBuilder.js";
+import "./classes/DOMTodoBuilder.js";
+
+import "./modules/loadAddProjectForm.js";
+import "./modules/loadAddTaskButton.js";
+import "./modules/loadAddTodoForm.js";
+import "./modules/loadEditTodoForm.js";
+import "./modules/loadProjects.js";
+import "./modules/loadTodo.js";
+import "./modules/setTodoCounter.js";
+import "./modules/utilityFunction.js";
 
 
 import { loadProjects } from "./modules/loadProjects";
@@ -16,7 +25,6 @@ import { setTodoCounter } from "./modules/setTodoCounter";
 import  "../src/scripts/script.js" ;
 import { loadTodo } from "./modules/loadTodo.js";
 import { createReadyElement } from "./modules/utilityFunction.js";
-
 
 document.addEventListener("DOMContentLoaded" , () => {
     loadTodo("inbox");

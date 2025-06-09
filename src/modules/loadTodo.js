@@ -10,36 +10,45 @@ let weekBuilder = new weekTodoBuilder();
 export function loadTodo(option)
 {
     const parsedInboxTodos = JSON.parse(localStorage.getItem("inboxTodos"))
-    const todoArray = rehydrateTodo(parsedInboxTodos);
     
-    const content = document.getElementById("content");
-    content.innerHTML = "";
+    if(parsedInboxTodos)
+    {
+        const todoArray = rehydrateTodo(parsedInboxTodos);
 
-    // Create Section Title
-    let sectionTitle = "";
-    let todosContentContainer = createReadyElement("ul" , "todos-content-container");
+        const content = document.getElementById("content");
+        content.innerHTML = "";
 
-    if(option === "inbox")
-    {
-        sectionTitle = "Inbox";
-        let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
-        content.appendChild(sectionTitleElement);
-        inboxBuilder.buildTodo(todoArray , option , todosContentContainer);
-        loadAddTaskButton();
+        // Create Section Title
+        let sectionTitle = "";
+        let todosContentContainer = createReadyElement("ul" , "todos-content-container");
+
+        if(option === "inbox")
+        {
+            sectionTitle = "Inbox";
+            let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
+            content.appendChild(sectionTitleElement);
+            inboxBuilder.buildTodo(todoArray , option , todosContentContainer);
+            loadAddTaskButton();
+        }
+        else if(option === "today")
+        {
+            
+            sectionTitle = "Today Todos";
+            let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
+            content.appendChild(sectionTitleElement);
+            todayBuilder.buildTodo(todoArray , option , todosContentContainer);
+        }
+        else if(option === "week")
+        {
+            sectionTitle = "This Week Todos";
+            let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
+            content.appendChild(sectionTitleElement);
+            weekBuilder.buildTodo(todoArray , option , todosContentContainer);
+        }
     }
-    else if(option === "today")
+    else
     {
-        
-        sectionTitle = "Today Todos";
-        let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
-        content.appendChild(sectionTitleElement);
-        todayBuilder.buildTodo(todoArray , option , todosContentContainer);
+        console.log("NO TODOS")
     }
-    else if(option === "week")
-    {
-        sectionTitle = "This Week Todos";
-        let sectionTitleElement = createReadyElement("h2" , "content-title" , sectionTitle);
-        content.appendChild(sectionTitleElement);
-        weekBuilder.buildTodo(todoArray , option , todosContentContainer);
-    }
+
 }

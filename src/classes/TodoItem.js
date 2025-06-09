@@ -108,7 +108,6 @@ function deleteTodo(givenID)
 
 function rehydrateTodo(rawTodos)
 {
-    console.log(rawTodos)
     return rawTodos.map(todo => {
         const newTodo = new TodoItem(
             todo._title,
