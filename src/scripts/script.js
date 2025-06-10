@@ -7,6 +7,7 @@ const sidebar = document.querySelector("#sidebar");
 sidebarOpener.addEventListener("click" , (event) => {
     if(event.currentTarget.dataset.state === "inactive")
     {
+        sidebar.style.display = "flex";
         sidebar.classList.remove("sidebarSlideOUT");
         sidebar.classList.add("sidebarSlideIN");
 
@@ -14,6 +15,9 @@ sidebarOpener.addEventListener("click" , (event) => {
     }
     else
     {
+        setTimeout(() => {
+            sidebar.style.display = "none";
+        } , 650)
         sidebar.classList.remove("sidebarSlideIN");
         sidebar.classList.add("sidebarSlideOUT");
 
@@ -35,5 +39,16 @@ todosSelection.forEach(selection => {
 })
 
 
+window.addEventListener("resize" , (event) => {
+    const sidebar = document.querySelector("#sidebar");
 
+    if(window.innerWidth > 880)
+    {
+        sidebar.style.display = "flex";
+        sidebar.classList.remove("sidebarSlideOUT");
+        sidebar.classList.add("sidebarSlideIN");
 
+        document.querySelector(".burger-menu").dataset.state = "active";
+
+    }
+});
