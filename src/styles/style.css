@@ -148,7 +148,7 @@ main{
 .todos-selections > li > p{
     font-family: var(--general-font);
     font-weight: 500;
-    margin-right: auto;
+    
 }
 
 .todos-selections > li:hover{
@@ -248,7 +248,7 @@ main{
     width: 100%;
     overflow: hidden;
     border-radius: 10px;
-    height: 165px;
+    min-height: 200px;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-left: 10px solid black;
@@ -280,7 +280,14 @@ main{
 }
 
 .todo-information > .todo-title{
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    text-wrap: wrap;
+    padding: 10px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all; 
+    max-width: 100%;
+    background-color: red;
 }
 
 .todo-information > .todo-description{
@@ -299,7 +306,8 @@ main{
 
 .todo-control{
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 30px;
 }
 
 
