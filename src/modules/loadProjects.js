@@ -9,8 +9,7 @@ function loadProjects()
     const parsedProjectJSON = JSON.parse(localStorage.getItem("projectsAvailable"));
     projectsSelections.innerHTML = "";
 
-    projectBuilder.buildProjects(parsedProjectJSON , projectsSelections)
-
+    projectBuilder.buildProjects(parsedProjectJSON , projectsSelections);
 }
 
 export {loadProjects}

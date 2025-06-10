@@ -30,17 +30,7 @@ todosSelection.forEach(selection => {
 
         todosSelection.forEach(selection => selection.classList.remove("active"));
 
-        const currentTodoCounter = document.querySelector(".todos-counter")
-        currentTodoCounter.remove();
-        
-
-        const todoCounter = createReadyElement("div" , "todos-counter" , "");
-        selection.appendChild(todoCounter);
-    
-
         selection.classList.add("active");
-
-
     })
 })
 

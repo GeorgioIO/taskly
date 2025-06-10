@@ -16,6 +16,8 @@ function loadEditTodoForm(todo){
     const titleContainer = createReadyElement("div" , "input-container");
     titleContainer.id = "title";
 
+    const errorMessage = createReadyElement("p" , "form-error-message" , "");
+
     const titleField = createReadyElement("input");
     titleField.type = "text";
     titleField.id = "todoTitle";
@@ -103,7 +105,7 @@ function loadEditTodoForm(todo){
     mediumPriorButton.id = "Medium";
     if(todo.priority === "Medium")
     {
-        highPriorButton.dataset.active = "true";
+        mediumPriorButton.dataset.active = "true";
         mediumPriorButton.style.backgroundColor = "yellow";
     }
 
@@ -114,7 +116,7 @@ function loadEditTodoForm(todo){
     lowPriorButton.id = "Low";
     if(todo.priority === "Low")
     {
-        highPriorButton.dataset.active = "true";
+        mediumPriorButton.dataset.active = "true";
         lowPriorButton.style.backgroundColor = "green";
     }
     
@@ -137,7 +139,7 @@ function loadEditTodoForm(todo){
 
     buttonsContainer.append(submitButton , closeButton);
 
-    form.append(formTitle , titleContainer , descriptionContainer , projectsContainer , dueDateContainer , priorityContainer , buttonsContainer);
+    form.append(formTitle , errorMessage , titleContainer , descriptionContainer , projectsContainer , dueDateContainer , priorityContainer , buttonsContainer);
 
     mainTag.append(form);
 }

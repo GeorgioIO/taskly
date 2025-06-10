@@ -1,6 +1,7 @@
 import { createReadyElement } from "./utilityFunction.js";
 import addIcon from "../assets/images/add-task-icon.svg";
 import { loadAddTodoForm , setCloseButton , setPriorityButtons , setUpAddTodoBtn} from "./loadAddTodoForm.js";
+
 function loadAddTaskButton()
 {
     const content = document.getElementById("content");

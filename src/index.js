@@ -14,24 +14,18 @@ import "./modules/loadAddTodoForm.js";
 import "./modules/loadEditTodoForm.js";
 import "./modules/loadProjects.js";
 import "./modules/loadTodo.js";
-import "./modules/setTodoCounter.js";
 import "./modules/utilityFunction.js";
 
 
 import { loadProjects } from "./modules/loadProjects";
 import { loadAddTodoForm , setCloseButton , setPriorityButtons , setUpAddTodoBtn} from "./modules/loadAddTodoForm";
 import { loadAddProjectForm , setUpAddProjectBtn } from "./modules/loadAddProjectForm";
-import { setTodoCounter } from "./modules/setTodoCounter";
 import  "../src/scripts/script.js" ;
 import { loadTodo } from "./modules/loadTodo.js";
-import { createReadyElement } from "./modules/utilityFunction.js";
 
 document.addEventListener("DOMContentLoaded" , () => {
     loadTodo("inbox");
 
-    const todoCounter = createReadyElement("div" , "todos-counter" , "");
-    document.getElementById("inbox").appendChild(todoCounter);
-    setTodoCounter("inbox");
     loadProjects();
 
     const addTaskButton = document.querySelector(".add-task-button");
@@ -69,19 +63,17 @@ showAddProjectFormBtn.addEventListener("click" , () => {
 
 const todayTodosBtn = document.querySelector("li#today");
 todayTodosBtn.addEventListener("click" , () => {
+    console.log("today todos")
     loadTodo("today");
-    setTodoCounter("today");
 })
 
 const inboxTodosBtn = document.querySelector("li#inbox");
 inboxTodosBtn.addEventListener("click" , () => {
     loadTodo("inbox");
-    setTodoCounter("inbox");
 })
 
 const weekTodosBtn = document.querySelector("li#weekly");
 weekTodosBtn.addEventListener("click" , () => {
     loadTodo("week")
-    setTodoCounter("week");
 })
 

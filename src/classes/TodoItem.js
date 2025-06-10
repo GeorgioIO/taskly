@@ -9,7 +9,7 @@ class TodoItem {
         this._description = description;
         this._priority = priority;
         this._dueDate = dueDate;
-        this.creationDate = format(new Date() , 'MM-dd-yyyy');
+        this.creationDate = format(new Date() , 'yyyy-MM-dd');
         this._projectID = projectID;
     }
 
@@ -74,6 +74,45 @@ function updateTodo(todoToChange)
     const newTodoProject = document.querySelector("#projectsSelections");
     const newTodoDueDate = document.querySelector("#todoDueDate");
 
+    if(!newTodoTitle.value)
+    {
+        const errorMessage = document.querySelector(".form-error-message");
+        errorMessage.style.display = "flex";
+        errorMessage.innerText = "Todo Name is missing";
+        setTimeout(() => {
+            errorMessage.style.display = "none";
+            errorMessage.innerText = "";
+        }, 1000)
+        return;
+    }
+
+    let modifiedPriority = "";
+    if(!newTodoPriority)
+    {
+        modifiedPriority = "None";
+    }
+    else
+    {
+        modifiedPriority = newTodoPriority.id;
+    }
+
+    let modifiedDate = "";
+    if(!newTodoDueDate.value == "No Date Set" || !newTodoDueDate.value == "")
+    {
+        if(new Date(newTodoDueDate.value) < new Date())
+        {
+            const errorMessage = document.querySelector(".form-error-message");
+            errorMessage.style.display = "flex";
+            errorMessage.innerText = "Please enter a valid due date";
+            setTimeout(() => {
+                errorMessage.style.display = "none";
+                errorMessage.innerText = "";
+            }, 1000)
+            return;
+        }
+        modifiedDate = newTodoDueDate.value
+    }
+
     const savedTodos = JSON.parse(localStorage.getItem("inboxTodos"));
     const todoArray = rehydrateTodo(savedTodos);
     for(let i = 0 ; i < todoArray.length ; i++)
@@ -82,9 +121,9 @@ function updateTodo(todoToChange)
         {
             todoArray[i].title = newTodoTitle.value;
             todoArray[i].description = newTodoDescription.value;
-            todoArray[i].priority = newTodoPriority.id;
+            todoArray[i].priority = modifiedPriority;
             todoArray[i].projectID = newTodoProject.value;
-            todoArray[i].dueDate = newTodoDueDate.value;
+            todoArray[i].dueDate = modifiedDate;
         }
     }
     localStorage.setItem("inboxTodos" , JSON.stringify(todoArray));

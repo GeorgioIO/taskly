@@ -1,6 +1,5 @@
 import { TodoItem } from "../classes/TodoItem";
 import { createReadyElement } from "./utilityFunction";
-import { setTodoCounter } from "./setTodoCounter";
 import { loadTodo } from "./loadTodo";
 
 function loadAddTodoForm(){
@@ -17,6 +16,9 @@ function loadAddTodoForm(){
     
     const titleContainer = createReadyElement("div" , "input-container");
     titleContainer.id = "title";
+
+    const errorMessage = createReadyElement("p" , "form-error-message" , "");
+
 
     const titleField = createReadyElement("input");
     titleField.type = "text";
@@ -52,7 +54,7 @@ function loadAddTodoForm(){
 
     projectsField.append(defaultOption)
 
-    const savedProjects = JSON.parse(localStorage.getItem("projectsAvailable"))
+    const savedProjects = JSON.parse(localStorage.getItem("projectsAvailable")) || [];
 
     for(let i = 0 ; i < savedProjects.length ; i++)
     {
@@ -109,7 +111,7 @@ function loadAddTodoForm(){
 
     buttonsContainer.append(submitButton , closeButton);
 
-    form.append(formTitle , titleContainer , descriptionContainer , projectsContainer , dueDateContainer , priorityContainer , buttonsContainer);
+    form.append(formTitle , errorMessage , titleContainer , descriptionContainer , projectsContainer , dueDateContainer , priorityContainer , buttonsContainer);
 
     mainTag.append(form);
 }
@@ -118,12 +120,25 @@ function setUpAddTodoBtn()
 {
     const addButton = document.querySelector(".add-todo");
 
-    addButton.addEventListener("click", () => {
+    addButton.addEventListener("click", (event) => {
         const todoTitle = document.querySelector("#todoTitle");
         const todoDescription = document.querySelector("#todoDescription");
         const todoPriority = document.querySelector('[data-active="true"]');
         const todoProject = document.querySelector("#projectsSelections");
         const todoDueDate = document.querySelector("#todoDueDate");
+
+
+        if(!todoTitle.value)
+        {   
+            const errorMessage = document.querySelector(".form-error-message");
+            errorMessage.style.display = "flex";
+            errorMessage.innerText = "Todo Name is missing";
+            setTimeout(() => {
+                errorMessage.style.display = "none";
+                errorMessage.innerText = "";
+            }, 1000)
+            return;
+        }
 
         let modifiedDate = "";
         if(todoDueDate.value == "")
@@ -132,6 +147,18 @@ function setUpAddTodoBtn()
         }
         else
         {
+            if(new Date(todoDueDate.value) < new Date())
+            {
+                const errorMessage = document.querySelector(".form-error-message");
+                errorMessage.style.display = "flex";
+                errorMessage.innerText = "Please enter a valid due date";
+                setTimeout(() => {
+                    errorMessage.style.display = "none";
+                    errorMessage.innerText = "";
+                }, 1000)
+                return;
+            }
+
             modifiedDate = todoDueDate.value
         }
 
@@ -156,7 +183,6 @@ function setUpAddTodoBtn()
         }
 
         loadTodo("inbox");
-        setTodoCounter("inbox");
     })  
 }
 

@@ -45,6 +45,7 @@ class ProjectBuilder extends DOMProjectInventory
 
     buildProjects(projects , projectsContainer)
     {
+        console.log("zaber " , projects.length)
         if(projects.length > 0)
         {
             for(let i = 0 ; i < projects.length ; i++)
@@ -60,12 +61,6 @@ class ProjectBuilder extends DOMProjectInventory
 
                     const todoSelections = document.querySelectorAll(".todos-selections li");
                     todoSelections.forEach(todoselection => todoselection.classList.remove("active"));
-
-                    const todoCounter = document.querySelector(".todos-counter")
-                    if (todoCounter)
-                    {
-                        todoCounter.remove();
-                    }
 
                     allProjects.forEach(project => project.classList.remove("active-project"));
                     liProject.classList.add("active-project");

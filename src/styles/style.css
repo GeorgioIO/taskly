@@ -31,7 +31,6 @@ button{
     
     --todo-selections-bg-color-hover : #CCCCCC;
     --todo-selections-bg-color-active : #CCCCCC;
-    --todo-selections-counter-bg-color : #696969;
 
     --header-text-color : var(--white-color);
     --footer-font-color : var(--white-color);
@@ -154,20 +153,6 @@ main{
 
 .todos-selections > li:hover{
     background-color: var(--todo-selections-bg-color-hover);
-}
-
-.todos-counter{
-    width: 20px;
-    height: 20px;
-    background-color: var(--todo-selections-counter-bg-color);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-    font-family: var(--general-font);
-    color: var(--white-color);
-    font-size: .8rem;
 }
 
 .projects{
@@ -334,6 +319,25 @@ main{
 
 }
 
+.empty-message
+{
+    font-family: var(--general-font);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.dates-container
+{
+    display: flex;
+}
+
+.form-error-message
+{
+    color: red;
+    font-family: var(--general-font);
+    font-style: italic;
+    display: none;
+}
 
 /* form */
 .add-form{

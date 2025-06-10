@@ -1,6 +1,6 @@
 import { createReadyElement } from "./utilityFunction";
 import { loadProjects } from "./loadProjects";
-import { Project } from "../classes/Project";
+import { Project } from "../classes/Project.js";
 
 function loadAddProjectForm()
 {
@@ -12,6 +12,8 @@ function loadAddProjectForm()
     form.classList.add("add-form");
 
     const formTitle = createReadyElement("h2" , "form-title" , "Add Project");
+
+    const errorMessage = createReadyElement("p" , "form-error-message" , "");
 
     const projectNameContainer = createReadyElement("div" , "input-container");
 
@@ -48,7 +50,7 @@ function loadAddProjectForm()
 
     buttonsContainer.append(submitButton , closeButton);
 
-    form.append(formTitle , projectNameContainer , projectDescriptionContainer , buttonsContainer);
+    form.append(formTitle , errorMessage , projectNameContainer , projectDescriptionContainer , buttonsContainer);
 
     
 }
@@ -60,18 +62,28 @@ function setUpAddProjectBtn()
         const projectName = document.querySelector("#projectName");
         const projectDescription = document.querySelector("#projectDescription");
 
+        if(projectName.value == "")
+        {
+            const errorMessage = document.querySelector(".form-error-message");
+            errorMessage.style.display = "flex";
+            errorMessage.innerText = "Project Name is missing";
+            setTimeout(() => {
+                errorMessage.style.display = "none";
+                errorMessage.innerText = "";
+            }, 1000)
+            return;
+        }
+
         const newProject = new Project(projectName.value , projectDescription.value);
         projectName.value = "";
         projectDescription.value = "";
 
 
-        const savedProjects = JSON.parse(localStorage.getItem("projectsAvailable"));
+        const savedProjects = JSON.parse(localStorage.getItem("projectsAvailable")) || [];
 
-        if(savedProjects)
-        {
-            savedProjects.push(newProject);
-            localStorage.setItem("projectsAvailable" , JSON.stringify(savedProjects));
-        }
+        savedProjects.push(newProject);
+        localStorage.setItem("projectsAvailable" , JSON.stringify(savedProjects));
+        
 
         loadProjects();
     })

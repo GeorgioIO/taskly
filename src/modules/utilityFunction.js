@@ -23,4 +23,5 @@ function createReadyElement(type , givenClass="" , text="")
     return element;
 }
 
+
 export {createReadyElement , generateID}

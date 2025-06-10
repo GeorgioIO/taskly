@@ -2,7 +2,6 @@ import { createReadyElement } from "../modules/utilityFunction";
 import editIcon from "../assets/images/edittodo-icon.svg";
 import deleteIcon from "../assets/images/deletetodo-icon.svg";
 import { deleteTodo} from "../classes/TodoItem";
-import { setTodoCounter } from "../modules/setTodoCounter";
 import { loadEditTodoForm  , setCloseButton , setPriorityButtons} from "../modules/loadEditTodoForm";
 import { format , isThisWeek} from "date-fns";
 
@@ -68,8 +67,12 @@ class inboxTodoBuilder extends DOMTodoInventory
             let todoTitle = createReadyElement("h2" , "todo-title" , todos[i].title);
             let todoDescription = createReadyElement("p" , "todo-description" , todos[i].description);
             let todoCreationDate = createReadyElement("p" , "todo-creationdate" , todos[i].creationDate);
-            
-            todoInformationContainer.append(todoTitle , todoDescription , todoCreationDate);
+            let todoDueDate = createReadyElement("p" , "todo-duedate" , todos[i].dueDate);
+
+            let datesContainer = createReadyElement("p" , "dates-container" , "");
+            datesContainer.innerHTML = `Created : ${todoCreationDate.innerText} - Due : ${todoDueDate.innerText}`;
+
+            todoInformationContainer.append(todoTitle , todoDescription , datesContainer);
             todoListItem.appendChild(todoInformationContainer);
 
             let buttonContainer = createReadyElement("div" , "todo-control");
@@ -87,7 +90,6 @@ class inboxTodoBuilder extends DOMTodoInventory
                 const { loadTodo } = await import("../modules/loadTodo.js");
                 deleteTodo(todos[i].id);
                 loadTodo(option);
-                setTodoCounter(option);
             })
 
             editButton.addEventListener("click" , () => {
@@ -116,7 +118,7 @@ class todayTodoBuilder extends inboxTodoBuilder
 {
     buildTodo(todos , option , todosContainer)
     {
-        const todayDate = format(new Date() , 'MM-dd-yyyy');
+        const todayDate = format(new Date() , 'yyyy-MM-dd');
         
         const content = document.getElementById("content");
         content.dataset.currentContent = "today";
@@ -143,8 +145,12 @@ class todayTodoBuilder extends inboxTodoBuilder
                 let todoTitle = createReadyElement("h2" , "todo-title" , todos[i].title);
                 let todoDescription = createReadyElement("p" , "todo-description" , todos[i].description);
                 let todoCreationDate = createReadyElement("p" , "todo-creationdate" , todos[i].creationDate);
+                let todoDueDate = createReadyElement("p" , "todo-duedate" , todos[i].dueDate);
                 
-                todoInformationContainer.append(todoTitle , todoDescription , todoCreationDate);
+                let datesContainer = createReadyElement("p" , "dates-container" , "");
+                datesContainer.innerHTML = `Created : ${todoCreationDate.innerText} - Due : ${todoDueDate.innerText}`;
+
+                todoInformationContainer.append(todoTitle , todoDescription , datesContainer);
                 todoListItem.appendChild(todoInformationContainer);
 
                 let buttonContainer = createReadyElement("div" , "todo-control");
@@ -162,7 +168,6 @@ class todayTodoBuilder extends inboxTodoBuilder
                     const { loadTodo } = await import("../modules/loadTodo.js");
                     deleteTodo(todos[i].id);
                     loadTodo(option);
-                    setTodoCounter(option);
                 })
 
                 editButton.addEventListener("click" , () => {
@@ -218,8 +223,13 @@ class weekTodoBuilder extends inboxTodoBuilder
                 let todoTitle = createReadyElement("h2" , "todo-title" , todos[i].title);
                 let todoDescription = createReadyElement("p" , "todo-description" , todos[i].description);
                 let todoCreationDate = createReadyElement("p" , "todo-creationdate" , todos[i].creationDate);
+                let todoDueDate = createReadyElement("p" , "todo-duedate" , todos[i].dueDate);
                 
-                todoInformationContainer.append(todoTitle , todoDescription , todoCreationDate);
+                let datesContainer = createReadyElement("p" , "dates-container" , "");
+                datesContainer.innerHTML = `Created : ${todoCreationDate.innerText} - Due : ${todoDueDate.innerText}`;
+
+                todoInformationContainer.append(todoTitle , todoDescription , datesContainer);
+
                 todoListItem.appendChild(todoInformationContainer);
 
                 let buttonContainer = createReadyElement("div" , "todo-control");
@@ -237,7 +247,6 @@ class weekTodoBuilder extends inboxTodoBuilder
                     const { loadTodo } = await import("../modules/loadTodo.js");
                     deleteTodo(todos[i].id);
                     loadTodo(option);
-                    setTodoCounter(option);
                 })
 
                 editButton.addEventListener("click" , () => {
@@ -291,8 +300,13 @@ class ProjectTodoBuilder extends inboxTodoBuilder
                 let todoTitle = createReadyElement("h2" , "todo-title" , todos[i].title);
                 let todoDescription = createReadyElement("p" , "todo-description" , todos[i].description);
                 let todoCreationDate = createReadyElement("p" , "todo-creationdate" , todos[i].creationDate);
+                let todoDueDate = createReadyElement("p" , "todo-duedate" , todos[i].dueDate);
                 
-                todoInformationContainer.append(todoTitle , todoDescription , todoCreationDate);
+                let datesContainer = createReadyElement("p" , "dates-container" , "");
+                datesContainer.innerHTML = `Created : ${todoCreationDate.innerText} - Due : ${todoDueDate.innerText}`;
+
+                todoInformationContainer.append(todoTitle , todoDescription , datesContainer);
+
                 todoListItem.appendChild(todoInformationContainer);
     
                 let buttonContainer = createReadyElement("div" , "todo-control");
@@ -309,7 +323,6 @@ class ProjectTodoBuilder extends inboxTodoBuilder
                     const { loadTodo } = await import("../modules/loadTodo.js");
                     deleteTodo(todos[i].id);
                     this.buildTodo(project);
-                    setTodoCounter("inbox");
                 })
 
                 editButton.addEventListener("click" , () => {
