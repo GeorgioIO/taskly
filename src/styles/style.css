@@ -287,7 +287,6 @@ main{
     overflow-wrap: break-word;
     word-break: break-all; 
     max-width: 100%;
-    background-color: red;
 }
 
 .todo-information > .todo-description{
